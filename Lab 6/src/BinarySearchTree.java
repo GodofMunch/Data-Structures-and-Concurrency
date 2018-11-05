@@ -1,3 +1,6 @@
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
    This class implements a binary search tree whose
    nodes hold objects that implement the Comparable
@@ -62,4 +65,40 @@ public class BinarySearchTree<E extends Comparable<E>> {
       }
    }
 
+   public void printPreOrderIterative() {
+       Deque<Node> stack = new LinkedList<>();
+       Node newNode;
+       stack.addFirst(root);
+
+       while(!stack.isEmpty()){
+           newNode = stack.removeFirst();
+           System.out.println(newNode.data);
+
+
+           if(newNode.right != null)
+                stack.addFirst(newNode.right);
+           if(newNode.left != null)
+               stack.addFirst(newNode.left);
+
+
+       }
+   }
+
+   public void printBreadthFirstIterative() {
+       Deque<Node> tree = new LinkedList<>();
+       Node newNode;
+       tree.addFirst(root);
+
+       while(!tree.isEmpty()){
+           newNode = tree.removeFirst();
+
+           System.out.println(newNode.data);
+
+
+           if(newNode.left != null)
+               tree.addLast(newNode.left);
+           if(newNode.right != null)
+               tree.addLast(newNode.right);
+       }
+   }
 }
